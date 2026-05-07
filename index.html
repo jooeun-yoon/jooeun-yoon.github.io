@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jooeun Yoon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Figtree:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #ffffff;
+      --ink:      #0e0e0e;
+      --muted:    #6a6a6a;
+      --soft:     #f7f7f7;
+      --rule:     #e8e8e8;
+      --accent:   #1c4532;
+      --accent-l: #e8f1ec;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Figtree', sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 5vw;
+      background: rgba(255,255,255,0.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    #hero {
+      padding: 8.5rem 5vw 5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .chip {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-l);
+      padding: 0.28rem 0.7rem;
+      border-radius: 3px;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+
+    .photo-circle {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: var(--soft);
+      border: 1px solid var(--rule);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      margin-top: 0.3rem;
+    }
+    .photo-circle svg { opacity: 0.25; }
+
+    .hero-sub {
+      font-size: 0.97rem;
+      color: var(--muted);
+      max-width: 600px;
+      line-height: 1.75;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-info {
+      display: flex; gap: 1.8rem; flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .info-item {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem; font-weight: 500;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .info-item::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--rule);
+    }
+
+    .hero-cta { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+
+    .btn {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.3rem;
+      border: 1.5px solid var(--ink);
+      text-decoration: none; color: var(--ink);
+      background: transparent; cursor: pointer;
+      transition: all 0.15s;
+      border-radius: 3px; display: inline-block;
+    }
+    .btn:hover { background: var(--ink); color: #fff; }
+    .btn.filled { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn.filled:hover { background: #112b20; border-color: #112b20; }
+
+    section { border-top: 1px solid var(--rule); }
+
+    .sec {
+      padding: 4rem 5vw;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .sec-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 2.2rem;
+    }
+
+    .research-intro {
+      font-size: 0.93rem; color: var(--muted);
+      max-width: 620px; margin-bottom: 2rem; line-height: 1.8;
+    }
+
+    .q-card {
+      border: 1.5px solid var(--rule);
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 0.8rem;
+      border-radius: 4px;
+      transition: border-color 0.15s;
+    }
+    .q-card:hover { border-color: var(--accent); }
+
+    .q-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.5rem;
+    }
+    .q-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.97rem; font-weight: 600;
+      line-height: 1.5; color: var(--ink); margin-bottom: 0.45rem;
+    }
+    .q-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.75; }
+
+    .fig-slot {
+      margin-top: 1.6rem;
+      border: 1.5px dashed var(--rule);
+      height: 180px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 4px; background: var(--soft);
+    }
+    .fig-slot span {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #ccc;
+    }
+
+    .exp-row {
+      display: grid; grid-template-columns: 160px 1fr;
+      gap: 2rem; padding: 1.8rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .exp-row:last-child { border-bottom: none; }
+
+    .exp-period {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem; font-weight: 500;
+      color: var(--muted); padding-top: 0.1rem;
+    }
+    .exp-type {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.3rem;
+    }
+    .exp-role {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--ink); margin-bottom: 0.15rem;
+    }
+    .exp-org { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.55rem; }
+    .exp-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.75; }
+
+    .edu-row {
+      display: grid; grid-template-columns: 160px 1fr;
+      gap: 2rem; padding: 1.4rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .edu-row:last-child { border-bottom: none; }
+    .edu-year { font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 500; color: var(--muted); }
+    .edu-deg { font-family: 'Outfit', sans-serif; font-size: 0.92rem; font-weight: 600; color: var(--ink); }
+    .edu-school { font-size: 0.8rem; color: var(--muted); }
+    .edu-gpa { font-family: 'Outfit', sans-serif; font-size: 0.72rem; color: var(--accent); margin-top: 0.15rem; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-group-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.6rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .tag {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.68rem; font-weight: 500;
+      background: var(--soft); color: var(--ink);
+      padding: 0.22rem 0.6rem;
+      border-radius: 3px; border: 1px solid var(--rule);
+    }
+
+    .pub-card {
+      background: var(--soft);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+    }
+    .pub-journal {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.4rem;
+    }
+    .pub-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem; font-weight: 600;
+      color: var(--ink); margin-bottom: 0.3rem; line-height: 1.45;
+    }
+    .pub-authors { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+    .pub-authors strong { color: var(--ink); font-style: normal; }
+
+    .bottom-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    }
+    .contact-line { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.4rem; }
+    .contact-line a { color: var(--ink); text-decoration: none; font-weight: 500; }
+    .contact-line a:hover { color: var(--accent); }
+
+    footer {
+      border-top: 1px solid var(--rule);
+      text-align: center; padding: 1.8rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #ccc;
+    }
+
+    @media (max-width: 680px) {
+      h1 { font-size: 2.8rem; }
+      .exp-row, .edu-row { grid-template-columns: 1fr; gap: 0.3rem; }
+      .bottom-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+
+      /* Nav: hide links, show hamburger */
+      .nav-links { display: none; flex-direction: column; }
+      .nav-links.open {
+        display: flex;
+        position: fixed; top: 52px; left: 0; right: 0;
+        background: rgba(255,255,255,0.97);
+        padding: 1.2rem 5vw 1.6rem;
+        border-bottom: 1px solid var(--rule);
+        gap: 1.2rem;
+        z-index: 99;
+      }
+      .nav-links.open a { font-size: 0.9rem; }
+      .hamburger { display: flex; }
+
+      /* Hero */
+      #hero { padding: 7rem 5vw 3rem; }
+      .hero-head { gap: 1rem; }
+      .photo-circle { width: 64px; height: 64px; }
+      .hero-info { gap: 1rem; flex-direction: column; }
+      .hero-cta { flex-direction: column; }
+      .hero-cta .btn { text-align: center; }
+
+      /* Sections */
+      .sec { padding: 3rem 5vw; }
+      .q-card { padding: 1.2rem 1.4rem; }
+      .pub-card { padding: 1.2rem 1.4rem; }
+
+      /* Experience period on mobile */
+      .exp-period { font-size: 0.68rem; margin-bottom: 0.1rem; }
+      .exp-type { margin-top: 0; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    #hero .chip      { animation: fadeUp 0.5s 0.05s both; }
+    #hero h1         { animation: fadeUp 0.5s 0.12s both; }
+    #hero .hero-sub  { animation: fadeUp 0.5s 0.2s both; }
+    #hero .hero-info { animation: fadeUp 0.5s 0.27s both; }
+    #hero .hero-cta  { animation: fadeUp 0.5s 0.34s both; }
+    /* ── THUMBNAIL + MODAL ── */
+    .thumb-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    .thumb-img {
+      width: 140px;
+      height: auto;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      mix-blend-mode: multiply;
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .thumb-wrap:hover .thumb-img {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      transform: scale(1.03);
+    }
+    .thumb-hint {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .modal {
+      display: none;
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal.open { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: 6px;
+      max-width: 860px;
+      width: 90vw;
+      padding: 2rem;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .modal-close {
+      position: absolute;
+      top: 0.8rem; right: 1rem;
+      background: none; border: none;
+      font-size: 1.1rem; cursor: pointer;
+      color: var(--muted);
+      font-family: 'Outfit', sans-serif;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#hero">Jooeun Yoon</a>
+  <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="#research" onclick="closeNav()">Research</a>
+    <a href="#experience" onclick="closeNav()">Experience</a>
+    <a href="#education" onclick="closeNav()">Education</a>
+    <a href="#contact" onclick="closeNav()">Contact</a>
+  </div>
+</nav>
+
+<div id="hero">
+  <div class="hero-head">
+    <div>
+      <div class="chip">PhD Applicant · Fall 2027</div>
+      <h1>Jooeun<br>Yoon</h1>
+    </div>
+    <div class="photo-circle">
+      <img src="photo.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;" alt="Jooeun Yoon" />
+    </div>
+  </div>
+
+  <p class="hero-sub">
+    Bioanalytical scientist and cancer immunology researcher investigating the mechanistic bottlenecks
+    of antitumor immune responses — from dendritic cell priming to T cell persistence within the
+    tumor microenvironment.
+  </p>
+
+  <div class="hero-info">
+    <span class="info-item">Curocell · Daejeon, South Korea</span>
+    <span class="info-item">KAIST M.S. 2024</span>
+    <span class="info-item">UCLA B.S. 2021</span>
+    <span class="info-item">jyoontr87@gmail.com</span>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#research" class="btn filled">Research Interests</a>
+    <a href="#experience" class="btn">Experience</a>
+    <a href="#cv" class="btn">Download CV</a>
+  </div>
+</div>
+
+<section id="research">
+  <div class="sec">
+    <div class="sec-label">Research Interests</div>
+    <p class="research-intro">
+      My research centers on understanding where and why antitumor immune responses fail in solid tumors,
+      and how delivery platforms can be rationally designed to intervene across multiple nodes of immune failure.
+      I am particularly interested in DC biology, mRNA-LNP delivery, neoantigen targeting, and TME-mediated suppression.
+    </p>
+
+    <div class="q-card">
+      <div class="q-num">Question 01</div>
+      <div class="q-text">
+        Where does the antitumor immune response break down in solid tumors — at the level of T cell priming,
+        or in the infiltration and persistence of primed T cells within the tumor microenvironment?
+      </div>
+      <div class="q-sub">
+        Despite extensive clinical investigation of DC-based vaccines, the relative contribution
+        of priming failure versus TME-mediated suppression has not been mechanistically isolated
+        in the literature — a gap that directly motivated my interest in pursuing doctoral training
+        in cancer immunology.
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-num">Question 02</div>
+      <div class="q-text">
+        How can therapeutic delivery platforms be designed to intervene synergistically across
+        multiple bottlenecks in antitumor immunity?
+      </div>
+      <div class="q-sub">
+        My doctoral research aims to move beyond single-node interventions. My background in
+        lipid-polymer nanoparticles and mRNA delivery, combined with a deeper mechanistic understanding
+        of immunological systems I hope to build through doctoral training, positions me to design
+        platforms that bridge delivery engineering and cancer immunology — coordinating DC activation,
+        neoantigen presentation, and T cell persistence within a unified therapeutic framework.
+      </div>
+    </div>
+
+    <div style="margin-top:1.6rem;">
+      <img src="figure1.png" alt="Antitumor immune response schematic"
+           style="width:100%;max-width:700px;display:block;border-radius:4px;" />
+    </div>
+  </div>
+</section>
+
+<!-- Modal 1 (unused now but kept for consistency) -->
+
+
+<section id="experience">
+  <div class="sec">
+    <div class="sec-label">Research &amp; Industry Experience</div>
+
+    <div class="exp-row">
+      <div class="exp-period">Apr 2026 – Present</div>
+      <div>
+        <div class="exp-type">Industry · Curocell</div>
+        <div class="exp-role">Associate Scientist — Analytical Development</div>
+        <div class="exp-desc">
+          Served as the primary flow cytometry specialist during cross-company training for an international partner, covering GMP release assays (flow cytometry, ELISA), system suitability criteria, and regulatory documentation, with English interpretation support throughout. Currently serving as the in-house liaison between the clinical team and external CROs for clinical sample testing, coordinating assay setup, reviewing clinical data, and providing analytical consultation across multiple assay types (e.g., MRD, ADA). Upcoming work includes method development for a new pipeline candidate, focusing on flow cytometry, cell-based potency, and identity assays.
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-period">Apr 2025 – Apr 2026</div>
+      <div>
+        <div class="exp-type">Industry · Curocell</div>
+        <div class="exp-role">QC Specialist — Analytical Validation &amp; Regulatory Support</div>
+        <div class="exp-desc">
+          GMP-compliant bioanalytical assay development for CAR-T product release and comparability.
+          Conducted method validation, authored CTD documentation, and contributed to MFDS regulatory responses.
+          Established statistically justified acceptance criteria using JMP.
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-period">Mar 2024 – Mar 2025</div>
+      <div>
+        <div class="exp-type">Industry · Curocell</div>
+        <div class="exp-role">Associate Scientist — Analytical Development</div>
+        <div class="exp-desc">
+          Optimized flow cytometry and qPCR assays for CAR-T characterization. Led transition of
+          research-stage workflows into GMP-compliant systems. Produced reference standards and
+          authored SOPs, qualification reports, and acceptance criteria documentation.
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-period">2022 – 2023</div>
+      <div>
+        <div class="exp-type">Master's Research · KAIST</div>
+        <div class="exp-role">Lipid–Polymer Nanoparticles for In Situ Cancer Vaccination</div>
+        <div class="exp-desc">
+          Designed hybrid nanoparticles for intratumoral co-delivery of FLT3L-encoding mRNA and paclitaxel,
+          targeting sequential immunogenic cell death and in situ DC activation. Demonstrated cDC1 expansion
+          in vitro; identified concentration-dependent particle instability as a key translational bottleneck in vivo.
+        </div>
+        <div class="thumb-wrap" style="margin-top:1.2rem;" onclick="openModal('modal2')">
+          <img src="figure2.png" class="thumb-img" alt="LPH nanoparticle mechanism schematic" />
+          <div class="thumb-hint">Click to enlarge ↗</div>
+        </div>
+      </div>
+    </div>
+
+<!-- Modal 2 -->
+<div id="modal2" class="modal" onclick="closeModal('modal2')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('modal2')">✕</button>
+    <img src="figure2.png" alt="LPH nanoparticle mechanism schematic" style="width:100%;display:block;" />
+  </div>
+</div>
+
+    <div class="exp-row">
+      <div class="exp-period">2023</div>
+      <div>
+        <div class="exp-type">Research Project · KAIST</div>
+        <div class="exp-role">Immune Evasion Strategies for In Vivo LNP Persistence</div>
+        <div class="exp-desc">
+          Contributed to development of CD47-displaying lipid nanoparticles to reduce macrophage-mediated
+          clearance. Evaluated biodistribution and transfection kinetics via time-course organ collection.
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-period">2022</div>
+      <div>
+        <div class="exp-type">Research Project · KAIST</div>
+        <div class="exp-role">Extracellular Vesicle–Mediated Immunotherapy</div>
+        <div class="exp-desc">
+          Contributed to the evaluation of liposome-based formulations designed to modulate extracellular vesicle (EV) release and inflammatory signaling. Participated in EV quantification using nanoparticle tracking analysis (NTA) and in vivo assessment of cytokine modulation, including TNF-α reduction in sepsis models. This work contributed to a peer-reviewed publication in ACS Applied Nano Materials (2024).
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="sec">
+    <div class="sec-label">Education</div>
+
+    <div class="edu-row">
+      <div class="edu-year">2022 – 2024</div>
+      <div>
+        <div class="edu-deg">M.S. · Bio and Brain Engineering</div>
+        <div class="edu-school">Korea Advanced Institute of Science and Technology (KAIST)</div>
+        <div class="edu-gpa">GPA 4.04 / 4.30</div>
+        <div class="edu-gpa" style="margin-top:0.3rem;">Thesis: Lipid–Polymer Hybrid Nanoparticles for Co-Delivery of mRNA and Chemotherapeutic Drugs</div>
+        <div class="edu-gpa" style="margin-top:0.3rem;">Advisor: Ji-Ho Park · <a href="https://jhp.kaist.ac.kr/" target="_blank" style="color:var(--accent);text-decoration:none;font-weight:500;">Therapeutic Biomaterials Engineering Laboratory (TBEL)</a></div>
+      </div>
+    </div>
+
+    <div class="edu-row">
+      <div class="edu-year">2019 – 2021</div>
+      <div>
+        <div class="edu-deg">B.S. · Bioengineering</div>
+        <div class="edu-school">University of California, Los Angeles (UCLA)</div>
+        <div class="edu-gpa">GPA 3.81 / 4.00</div>
+      </div>
+    </div>
+
+    <div class="edu-row">
+      <div class="edu-year">2016 – 2019</div>
+      <div>
+        <div class="edu-deg">Biological and Physical Sciences</div>
+        <div class="edu-school">Santa Monica College</div>
+        <div class="edu-gpa">GPA 4.00 / 4.00</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="sec-label">Technical Skills</div>
+    <div class="skills-grid">
+      <div>
+        <div class="skill-group-title">Assays</div>
+        <div class="skill-tags">
+          <span class="tag">Flow Cytometry</span>
+          <span class="tag">ELISA</span>
+          <span class="tag">qPCR</span>
+          <span class="tag">MTT / LDH</span>
+          <span class="tag">RiboGreen-based</span>
+          <span class="tag">Luciferase-based</span>
+          <span class="tag">IVT</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">In Vivo</div>
+        <div class="skill-tags">
+          <span class="tag">IV / IP Injection</span>
+          <span class="tag">Blood Collection</span>
+          <span class="tag">Organ Harvesting</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Instrumentation</div>
+        <div class="skill-tags">
+          <span class="tag">FACS</span>
+          <span class="tag">Confocal Microscopy</span>
+          <span class="tag">DLS · NTA</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Software</div>
+        <div class="skill-tags">
+          <span class="tag">FlowJo</span>
+          <span class="tag">GraphPad Prism</span>
+          <span class="tag">JMP</span>
+          <span class="tag">ImageJ</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-tags">
+          <span class="tag">Korean — Native</span>
+          <span class="tag">English — Proficient</span>
+        </div>
+        <div style="margin-top:0.5rem;font-size:0.75rem;color:var(--muted);font-family:'Outfit',sans-serif;">
+          TOEFL iBT (Feb 2026) · 100/120 &nbsp;·&nbsp; 5.0/6.0 &nbsp;·&nbsp; CEFR C1
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec">
+    <div class="sec-label">Publication</div>
+    <div class="pub-card">
+      <div class="pub-journal">ACS Applied Nano Materials · 2024</div>
+      <div class="pub-title">
+        <a href="https://pubs.acs.org/doi/10.1021/acsanm.4c00918" target="_blank"
+           style="color:var(--ink);text-decoration:none;">
+          Sphingomyelin Liposomes Ameliorate Lipopolysaccharide-Induced Sepsis via
+          Extracellular Vesicle-Mediated Exocytosis of Lipopolysaccharide ↗
+        </a>
+      </div>
+      <div class="pub-authors">
+        Hyeonjeong Han, <strong>Jooeun Yoon</strong>, Minseo Bang, Ji-Ho Park
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec">
+    <div class="bottom-grid">
+      <div id="cv">
+        <div class="sec-label">Curriculum Vitae</div>
+        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.7;">
+          Full CV available for download. Currently in final preparation.
+        </p>
+        <a href="#" class="btn filled"
+           onclick="alert('CV will be linked here once finalized.'); return false;">
+          Download CV (PDF)
+        </a>
+      </div>
+
+      <div>
+        <div class="sec-label">Contact</div>
+        <p class="contact-line"><a href="mailto:jyoontr87@gmail.com">jyoontr87@gmail.com</a></p>
+        <p class="contact-line">Daejeon, South Korea</p>
+        <p style="font-size:0.82rem;color:var(--muted);margin-top:0.8rem;line-height:1.7;">
+          Open to conversations about PhD opportunities and shared research interests in cancer immunology.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Jooeun Yoon</footer>
+
+<script>
+  function toggleNav() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+  function closeNav() {
+    document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal.open').forEach(m => {
+        m.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+</script>
+</body>
+</html>
